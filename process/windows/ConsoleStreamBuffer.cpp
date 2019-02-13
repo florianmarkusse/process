@@ -78,4 +78,4 @@ namespace logger
 		setp(begin, end);
 	}
 
-}
+} // namespace logger

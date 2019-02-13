@@ -115,17 +115,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Console.cpp" />
-    <ClCompile Include="ConsoleStreamBuffer.cpp" />
+    <ClCompile Include="LinuxLogger.cpp" />
+    <ClCompile Include="windows\WindowsLogger.cpp" />
+    <ClCompile Include="LoggerAbstractFactory.cpp" />
+    <ClCompile Include="windows\ConsoleStreamBuffer.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Pipe.cpp" />
-    <ClCompile Include="Process.cpp" />
+    <ClCompile Include="windows\Pipe.cpp" />
+    <ClCompile Include="windows\Process.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Console.h" />
-    <ClInclude Include="ConsoleStreamBuffer.h" />
-    <ClInclude Include="Pipe.h" />
-    <ClInclude Include="Process.h" />
+    <ClInclude Include="LinuxLogger.h" />
+    <ClInclude Include="windows\WindowsLogger.h" />
+    <ClInclude Include="LoggerAbstractFactory.h" />
+    <ClInclude Include="windows\ConsoleStreamBuffer.h" />
+    <ClInclude Include="ILogger.h" />
+    <ClInclude Include="windows\Pipe.h" />
+    <ClInclude Include="Platforms.h" />
+    <ClInclude Include="windows\Process.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -36,17 +36,17 @@ namespace logger
 		STARTUPINFO startupInfo;
 		GetStartupInfoA(&startupInfo);
 
-		if (!CreateProcessA(
+		if (!static_cast<bool>(CreateProcessA(
 			executablePath.c_str(),
 			m_cmdLine.data(),
 			nullptr,
 			nullptr,
-			false,
+			FALSE,
 			static_cast<DWORD>(processCreationFlags),
 			nullptr,
 			nullptr,
 			&startupInfo,
-			&m_processInfo)) { 
+			&m_processInfo))) { 
 				printf("CreateProcessA failed (%d).\n", GetLastError());
 		}
 
@@ -125,4 +125,4 @@ namespace logger
 			m_processInfo.hProcess = INVALID_HANDLE_VALUE;
 		}
 	}
-}
+} // namespace logger

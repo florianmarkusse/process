@@ -42,4 +42,4 @@ namespace logger
 
 		void terminate(int exitCode = 0);
 	};
-}
+} // namespace logger

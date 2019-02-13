@@ -1,4 +1,4 @@
-#include "Console.h"
+#include "WindowsLogger.h"
 #include "ConsoleStreamBuffer.h"
 
 /*
@@ -13,7 +13,7 @@ namespace logger
 {
 	constexpr static unsigned int DEFAULT_BUFFER_SIZE = 4096;
 	// Executable location for the child process.
-	const std::string EXECUTABLE_NAME = "Project1.exe"s; 
+	const std::string EXECUTABLE_NAME = "windows//Project1.exe"s; 
 
 	/*
 		<Constructor>
@@ -23,7 +23,7 @@ namespace logger
 
 		@return The generated unique pipe name.
 	*/
-	std::string logger::Console::createUniquePipeName(std::string base)
+	std::string WindowsLogger::createUniquePipeName(std::string base)
 	{
 		return base + std::to_string(::rand());
 	}
@@ -37,7 +37,7 @@ namespace logger
 
 		@return The command line arguments for the child process.
 	*/
-	std::string logger::Console::buildCommandLine(std::string title, std::string pipeName)
+	std::string WindowsLogger::buildCommandLine(std::string title, std::string pipeName)
 	{
 		return EXECUTABLE_NAME + " \"" + title + "\" \"" + pipeName + "\"";
 	}
@@ -48,7 +48,7 @@ namespace logger
 
 		@return The created Console instance.
 	*/
-	logger::Console::Console(std::string name)
+	WindowsLogger::WindowsLogger(std::string name)
 		: basic_ostream { new ConsoleStreamBuffer { 
 		m_output, BufferSize { DEFAULT_BUFFER_SIZE } } },
 		m_output {
@@ -65,4 +65,21 @@ namespace logger
 	{
 	}
 
-}
+	void WindowsLogger::info(const std::string & message)
+	{
+	}
+
+	void WindowsLogger::warn(const std::string & message)
+	{
+	}
+
+	void WindowsLogger::error(const std::string & message)
+	{
+	}
+
+	void WindowsLogger::success(const std::string & message)
+	{
+	}
+
+
+} // namespace logger

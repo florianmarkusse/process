@@ -1,6 +1,7 @@
 #pragma once
 #include "Pipe.h"
 #include "Process.h"
+#include "../ILogger.h"
 
 /*
 	Class for handling each console window for logging purposes.
@@ -11,7 +12,7 @@
 namespace logger
 {
 
-	class Console : public std::ostream
+	class WindowsLogger : public ILogger, public std::ostream
 	{
 	private:
 		Pipe m_output;
@@ -23,13 +24,13 @@ namespace logger
 			std::string pipeName);
 
 	public:
-		explicit Console(std::string name);
+		explicit WindowsLogger(std::string name);
 
-		void error(const std::string &message);
-		void warn(const std::string &message);
-		void notify(const std::string &message);
-		void success(const std::string &message);
+		void info(const std::string &message) override;
+		void warn(const std::string &message) override;
+		void error(const std::string &message) override;
+		void success(const std::string &message) override;
 	};
 
-}
+} // namespace logger
 

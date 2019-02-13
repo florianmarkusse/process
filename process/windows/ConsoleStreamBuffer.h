@@ -29,5 +29,5 @@ namespace logger
 		explicit ConsoleStreamBuffer(Pipe &output, BufferSize bufferSize);
 	};
 
-}
+} // namespace logger
 

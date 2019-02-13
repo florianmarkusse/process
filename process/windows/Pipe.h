@@ -95,9 +95,9 @@ namespace logger
 		void close();
 		const std::string &getPipeName() const;
 		size_t read(Buffer buffer);
-		void write(const Buffer buffer);
+		void write(Buffer buffer);
 	};
 
-}
+} // namespace logger
 
 

@@ -62,7 +62,7 @@ namespace logger
 			return;
 		}
 
-		if (!ConnectNamedPipe(m_handle, nullptr)) {
+		if (!static_cast<bool>(ConnectNamedPipe(m_handle, nullptr))) {
 			CloseHandle(m_handle);
 			printf("ConnectNamedPipe failed (%d).\n", GetLastError());
 		}
@@ -202,7 +202,7 @@ namespace logger
 				printf("Unable to open pipe\n");
 			}
 
-			if (!WaitNamedPipeA(pipeName.c_str(), 10000)) {
+			if (!static_cast<bool>(WaitNamedPipeA(pipeName.c_str(), 10000))) {
 				printf("Unable to wait on pipe\n");
 			}
 
@@ -250,12 +250,12 @@ namespace logger
 		connect();
 
 		DWORD bytesRead;
-		if (!ReadFile(
+		if (!static_cast<bool>(ReadFile(
 			m_handle,
 			buffer.data,
 			buffer.size.value,
 			&bytesRead,
-			nullptr)) {
+			nullptr))) {
 				printf("ReadFile failed, could not read pipe\n");
 				ExitThread(0);
 		}
@@ -275,14 +275,14 @@ namespace logger
 		connect();
 
 		DWORD bytesWritten;
-		if (!WriteFile(
+		if (!static_cast<bool>(WriteFile(
 			m_handle,
 			buffer.data,
 			buffer.size.value,
 			&bytesWritten,
-			nullptr) || bytesWritten != buffer.size.value) {
+			nullptr)) || bytesWritten != buffer.size.value) {
 				printf("WriteFile failed, could not write to pipe\n");
 		}
 	}
-}
+} // namespace logger
 
