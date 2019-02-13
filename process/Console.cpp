@@ -13,7 +13,7 @@ namespace logger
 {
 	constexpr static unsigned int DEFAULT_BUFFER_SIZE = 4096;
 	// Executable location for the child process.
-	const std::string EXECUTABLE_NAME = "C:\\dev\\process\\process\\Project1.exe"s; 
+	const std::string EXECUTABLE_NAME = "Project1.exe"s; 
 
 	/*
 		<Constructor>
