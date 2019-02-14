@@ -1,10 +1,20 @@
 #include "LoggerAbstractFactory.h"
+#include "StringBuilder.h"
 #include <iomanip>
 #include <iostream>
 
 int main()
 {
 
+	auto log = logger::LoggerAbstractFactory::createLogger("debugWiindow");
+
+	int i = 4;
+
+	auto string = StringBuilder::build("hello, d", 45);
+
+	std::cout << string;
+
+	log->info(string);
 
 
 	/*

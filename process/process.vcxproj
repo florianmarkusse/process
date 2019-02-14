@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LinuxLogger.cpp" />
+    <ClCompile Include="StringBuilder.cpp" />
     <ClCompile Include="windows\WindowsLogger.cpp" />
     <ClCompile Include="LoggerAbstractFactory.cpp" />
     <ClCompile Include="windows\ConsoleStreamBuffer.cpp" />
@@ -125,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LinuxLogger.h" />
+    <ClInclude Include="StringBuilder.h" />
     <ClInclude Include="windows\WindowsLogger.h" />
     <ClInclude Include="LoggerAbstractFactory.h" />
     <ClInclude Include="windows\ConsoleStreamBuffer.h" />

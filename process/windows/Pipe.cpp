@@ -62,7 +62,8 @@ namespace logger
 			return;
 		}
 
-		if (!static_cast<bool>(ConnectNamedPipe(m_handle, nullptr))) {
+		if (!static_cast<bool>(ConnectNamedPipe(m_handle, nullptr)) && 
+			(GetLastError() != ERROR_PIPE_CONNECTED)) {
 			CloseHandle(m_handle);
 			printf("ConnectNamedPipe failed (%d).\n", GetLastError());
 		}

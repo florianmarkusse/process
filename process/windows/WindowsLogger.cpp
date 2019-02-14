@@ -1,6 +1,5 @@
 #include "WindowsLogger.h"
 #include "ConsoleStreamBuffer.h"
-
 /*
 	Class for handling each console window for logging purposes.
 
@@ -67,6 +66,7 @@ namespace logger
 
 	void WindowsLogger::info(const std::string & message)
 	{
+		*(this) << message << std::flush;
 	}
 
 	void WindowsLogger::warn(const std::string & message)
@@ -80,6 +80,5 @@ namespace logger
 	void WindowsLogger::success(const std::string & message)
 	{
 	}
-
 
 } // namespace logger
