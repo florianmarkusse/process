@@ -1,25 +1,23 @@
 #include "LoggerAbstractFactory.h"
+#include <cstdarg>
 #include <iomanip>
 #include <iostream>
-#include <cstdarg>
 
-int main()
-{
+int main() {
 
-	auto log = logger::LoggerAbstractFactory::createLogger("debugWiindow");
+	auto log = logger::LoggerAbstractFactory::createLogger("debugWiiiiiiindow");
 
-	int i = 4;
+	int i = 35;
 
-	log->info("Objects working as well");
+	log->info("Printing variables: " + std::to_string(i) + "\n");
+	log->info("Objects also work, just inherit IPrintable interface\n");
+	log->warn("Warning\n");
+	log->success("Succ sexx\n");
+	log->error("Segfault :(\n");
 
+	auto log2 = logger::LoggerAbstractFactory::createLogger("SECOND LOGG");
 
-	/*
-	logger::WindowsLogger debug { "debug" };
-	
-	debug << "debug console\n";
-	// std stream manipulators function as usual
-	debug << std::hex << std::setfill('0') << std::setw(8) << 123456 << "\nflush!\n" << std::flush;
-	*/
+	log2->info("nothing more to mention sadly\n");
 
 	// wait for user input so the display stays up
 	std::cout << "Program finished, press any key to exit\n";

@@ -1,18 +1,18 @@
 #include "WindowsLogger.h"
 #include "ConsoleStreamBuffer.h"
+#include "../Time.h"
+
 /*
 	Class for handling each console window for logging purposes.
 
 	Florian Markusse
 */
-
-using namespace std::string_literals;
-
 namespace logger
 {
 	constexpr static unsigned int DEFAULT_BUFFER_SIZE = 4096;
 	// Executable location for the child process.
-	const std::string EXECUTABLE_NAME = "windows//Project1.exe"s; 
+	const std::string EXECUTABLE_NAME = 
+		R"(C:\dev\Project1\x64\Debug\Project1.exe)"; 
 
 	/*
 		<Constructor>
@@ -64,21 +64,76 @@ namespace logger
 	{
 	}
 
+	/*
+		<override>
+		Logs a message as an informationial message to the console this logger 
+		is associated with.
+
+		@param message; The message to log to the logger.
+	*/
 	void WindowsLogger::info(const std::string & message)
 	{
-		*(this) << message << std::flush;
+		*( this )
+			<< static_cast<typename std::underlying_type<LogLevel>::type>
+			( LogLevel::info )
+			<< getCurrentFormattedTime()
+			<< " "
+			<< message 
+			<< std::flush;
 	}
 
+	/*
+		<override>
+		Logs a message as a warning message to the console this logger
+		is associated with.
+
+		@param message; The message to log to the logger.
+	*/
 	void WindowsLogger::warn(const std::string & message)
 	{
+		*( this )
+			<< static_cast<typename std::underlying_type<LogLevel>::type>
+			( LogLevel::warn )
+			<< getCurrentFormattedTime()
+			<< " "
+			<< message
+			<< std::flush;
 	}
 
+	/*
+		<override>
+		Logs a message as an error message to the console this logger
+		is associated with.
+
+		@param message; The message to log to the logger.
+	*/
 	void WindowsLogger::error(const std::string & message)
 	{
+		*( this )
+			<< static_cast<typename std::underlying_type<LogLevel>::type>
+			( LogLevel::error )
+			<< getCurrentFormattedTime()
+			<< " "
+			<< message
+			<< std::flush;
 	}
 
+	/*
+		<override>
+		Logs a message as a success message to the console this logger
+		is associated with.
+
+		@param message; The message to log to the logger.
+	*/
 	void WindowsLogger::success(const std::string & message)
 	{
+		*( this )
+			<< static_cast<typename std::underlying_type<LogLevel>::type>
+			( LogLevel::success )
+			<< getCurrentFormattedTime()
+			<< " "
+			<< message
+			<< std::flush;
 	}
 
 } // namespace logger

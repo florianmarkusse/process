@@ -21,9 +21,6 @@
     <ClCompile Include="LoggerAbstractFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LinuxLogger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="windows\ConsoleStreamBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,6 +33,9 @@
     <ClCompile Include="windows\WindowsLogger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="linux\LinuxLogger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ILogger.h">
@@ -45,9 +45,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Platforms.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LinuxLogger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="windows\ConsoleStreamBuffer.h">
@@ -63,6 +60,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IPrintable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="linux\LinuxLogger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

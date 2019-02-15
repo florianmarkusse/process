@@ -6,7 +6,6 @@
 
 	Florian Markusse
 */
-
 namespace logger
 {
 	// Mandatory prefix for all pipes.

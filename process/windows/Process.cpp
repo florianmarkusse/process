@@ -7,7 +7,6 @@
 
 	Florian Markusse
 */
-
 namespace logger
 {
 

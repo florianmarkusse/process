@@ -6,7 +6,6 @@
 
 	Florian Markusse
 */
-
 namespace logger
 {
 	class IPrintable {

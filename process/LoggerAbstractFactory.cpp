@@ -7,7 +7,16 @@
 namespace logger
 {
 	
-	std::shared_ptr<ILogger> LoggerAbstractFactory::createLogger(const std::string & name)
+	/*
+		Returns the correct ILogger instance based on the platform used at 
+		compile-time.
+
+		@param name The title of the console window to log on.
+
+		@return The created logger instance.
+	*/
+	std::shared_ptr<ILogger> LoggerAbstractFactory::createLogger(
+		const std::string & name)
 	{
 #ifdef WINDOWS_PLATFORM
 		return std::make_shared<WindowsLogger>(name);

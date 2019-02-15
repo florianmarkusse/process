@@ -1,5 +1,4 @@
 #ifdef LINUX_PLATFORM
-
 #include "LinuxLogger.h"
 
 #include <pthread.h>

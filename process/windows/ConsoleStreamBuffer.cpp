@@ -5,7 +5,6 @@
 
 	Florian Markusse
 */
-
 namespace logger
 {
 
@@ -20,7 +19,7 @@ namespace logger
 		successful.
 	*/
 	std::basic_streambuf<char>::int_type 
-		logger::ConsoleStreamBuffer::overflow(int_type character)
+		ConsoleStreamBuffer::overflow(int_type character)
 	{
 		// Put area is full, thus publish!
 		publish();
@@ -42,7 +41,7 @@ namespace logger
 
 		@return 0.
 	*/
-	std::basic_streambuf<char>::int_type logger::ConsoleStreamBuffer::sync()
+	std::basic_streambuf<char>::int_type ConsoleStreamBuffer::sync()
 	{
 		publish();
 		return 0;
@@ -52,13 +51,18 @@ namespace logger
 		Write the contents of the put area to the pipe and resets the put area
 		pointers.
 	*/
-	void logger::ConsoleStreamBuffer::publish()
+	void ConsoleStreamBuffer::publish()
 	{
+		// Need to know how much to write to the pipe.
 		const int size = pptr() - pbase();
 
 		if (size > 0) {
 			m_output.write(
-				logger::Buffer { m_buffer.data(), static_cast<size_t> (size) });
+				Buffer { 
+					m_buffer.data(), 
+					static_cast<size_t> (size) 
+				});
+			// Define the put area again after writing.
 			setp(m_buffer.data(), m_buffer.data() + m_buffer.size());
 		}
 	}
@@ -68,13 +72,14 @@ namespace logger
 		Write the contents of the put area to the pipe and resets the put area
 		pointers.
 	*/
-	logger::ConsoleStreamBuffer::ConsoleStreamBuffer(
+	ConsoleStreamBuffer::ConsoleStreamBuffer(
 		Pipe & output, 
 		BufferSize bufferSize)
 		: m_output { output }, m_buffer(bufferSize.value)
 	{
 		char * const begin = m_buffer.data();
 		char * const end = begin + m_buffer.size();
+		// Define the put area.
 		setp(begin, end);
 	}
 

@@ -8,7 +8,6 @@
 
 	Florian Markusse
 */
-
 namespace logger 
 {
 	// Flag for creating a process with an extra console or not.

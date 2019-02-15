@@ -4,11 +4,11 @@
 #include "../ILogger.h"
 
 /*
-	Class for handling each console window for logging purposes.
+	Class for handling each console window on the windows operating system for 
+	logging purposes.
 
 	Florian Markusse
 */
-
 namespace logger
 {
 
