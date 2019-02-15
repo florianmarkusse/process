@@ -1,7 +1,7 @@
 #include "LoggerAbstractFactory.h"
-#include "StringBuilder.h"
 #include <iomanip>
 #include <iostream>
+#include <cstdarg>
 
 int main()
 {
@@ -10,11 +10,7 @@ int main()
 
 	int i = 4;
 
-	auto string = StringBuilder::build("hello, d", 45);
-
-	std::cout << string;
-
-	log->info(string);
+	log->info("Objects working as well");
 
 
 	/*

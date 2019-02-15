@@ -36,9 +36,6 @@
     <ClCompile Include="windows\WindowsLogger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StringBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ILogger.h">
@@ -65,7 +62,7 @@
     <ClInclude Include="windows\WindowsLogger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StringBuilder.h">
+    <ClInclude Include="IPrintable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
