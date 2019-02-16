@@ -1,3 +1,4 @@
+#include "../Platforms.h"
 #ifdef LINUX_PLATFORM
 #include "LinuxLogger.h"
 

@@ -1,13 +1,12 @@
 #pragma once
 
-#include <ostream>
 #include <string>
 
 /*
-        Interface that every platform (Windows, Linux and Apple) has to inherit
-   that provides the logging on a seperate console window.
+	Interface that every platform (Windows, Linux and Apple) has to inherit
+   	that provides the logging on a seperate console window.
 
-        Florian Markusse
+	Florian Markusse
 */
 namespace logger {
 
