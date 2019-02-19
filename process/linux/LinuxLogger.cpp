@@ -2,6 +2,7 @@
 #ifdef LINUX_PLATFORM
 #include "LinuxLogger.h"
 #include "MessageQueue.h"
+#include "../LoggingStreamBuffer.h"
 
 
 
@@ -32,17 +33,11 @@ namespace logger
 	}
 
 	LinuxLogger::LinuxLogger(const std::string & name)
+		: basic_ostream { new LoggingStreamBuffer { 
+		m_output, BufferSize { 4096 } } }, 
+		m_output { MessageQueue::create(createUniquePipeName("/" + name), MessageQueueMode::write) }
 	{
-		constexpr static char * CHILD_PROCESS_LOCATION = R"(/home/florian/Desktop/processCorss/childprocess/main)";
-		std::string queueName = createUniquePipeName("/");
-
-		char outputBuffer[512] = "0w0 what's this?";
-
-		MessageQueue messageQueue = MessageQueue::create(queueName, MessageQueueMode::write);
-		messageQueue.write( Buffer {
-			outputBuffer,
-			strlen(outputBuffer) + 1
-		});
+		constexpr static char const * CHILD_PROCESS_LOCATION = "/home/florian/Desktop/processCorss/childprocess/main";
 
 		pid_t processID;
 
@@ -55,57 +50,19 @@ namespace logger
 		
 		if (processID == 0) {
 			// Child process
+			m_processIDChild = processID;
 
 			char argumentBuffer[512];
 
-			
 			snprintf(argumentBuffer, 
 			sizeof(argumentBuffer), 
 			"gnome-terminal -- %s %s",
 			CHILD_PROCESS_LOCATION,
-			queueName.c_str());
+			m_output.getMessageQueueName().c_str());
 
 			system(argumentBuffer);
-			
-			/*
-			std::cout << "hello\n";
-
-			MessageQueue read = MessageQueue::open("/testerer", MessageQueueMode::read);
-
-			std::array<char, 4096> buffer = 
-				std::array<char, 4096>{};
-
-			unsigned int bytesRead = read.read( Buffer {
-				buffer.data(),
-				buffer.size()
-			});
-
-			std::cout << "i read " << bytesRead << " bytes\n";
-
-			for (unsigned int i = 0; i < bytesRead; ++i) {
-				std::cout << buffer[i];
-			}
-
-			std::cout << std::endl;
-			*/
-			/*
-			close(pipeFileDescriptors[1]);
-
-			while (read(pipeFileDescriptors[0], &buffer, 1)) {
-				write(STDOUT_FILENO, &buffer, 1);
-			}
-
-			write(STDOUT_FILENO, "\n", 1);
-			close(pipeFileDescriptors[0]);
-			*/
-			
 
 			_exit(EXIT_SUCCESS);
-
-
-		} else {
-			// Parent process
-			wait(NULL);
 		}
 		
 
@@ -125,7 +82,9 @@ namespace logger
 	*/
 	void LinuxLogger::info(const std::string & message)
 	{
-		
+		*( this )
+			<< message
+			<< std::flush;
 	}
 
 	/*

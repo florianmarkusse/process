@@ -1,4 +1,5 @@
 #pragma once
+#include "stddef.h"
 
 /*
 	Interface that every platform (Windows, Linux and Apple) has to inherit

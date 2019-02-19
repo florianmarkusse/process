@@ -1,6 +1,10 @@
+#include "../Platforms.h"
 #ifdef LINUX_PLATFORM
 #pragma once
 #include "../ILogger.h"
+#include "MessageQueue.h"
+
+#include <ostream>
 
 /*
 	Class for handling each console window on the windows operating system for
@@ -11,14 +15,18 @@
 namespace logger
 {
 
-	class LinuxLogger : public ILogger
+	class LinuxLogger : public ILogger, public std::ostream
 	{
 
 	private:
+		MessageQueue m_output;
+		std::string m_queueName;
+		pid_t m_processIDChild;
+
 		static std::string createUniquePipeName(std::string base);
 
 	public:
-		LinuxLogger(const std::string & name);
+		explicit LinuxLogger(const std::string & name);
 		~LinuxLogger();
 
 		void info(const std::string &message) override;
