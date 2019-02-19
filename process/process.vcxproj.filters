@@ -36,6 +36,12 @@
     <ClCompile Include="linux\LinuxLogger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="linux\MessageQueue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoggingStreamBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ILogger.h">
@@ -65,7 +71,16 @@
     <ClInclude Include="Time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IInterProcess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="linux\MessageQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="linux\LinuxLogger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggingStreamBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
