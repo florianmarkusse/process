@@ -1,5 +1,5 @@
 #include "WindowsLogger.h"
-#include "ConsoleStreamBuffer.h"
+#include "../LoggingStreamBuffer.h"
 #include "../Time.h"
 
 /*
@@ -48,7 +48,7 @@ namespace logger
 		@return The created Console instance.
 	*/
 	WindowsLogger::WindowsLogger(std::string name)
-		: basic_ostream { new ConsoleStreamBuffer { 
+		: basic_ostream { new LoggingStreamBuffer { 
 		m_output, BufferSize { DEFAULT_BUFFER_SIZE } } },
 		m_output {
 			Pipe::create(

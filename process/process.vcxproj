@@ -115,12 +115,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="linux\LinuxLogger.cpp" />
-    <ClCompile Include="linux\MessageQueue.cpp" />
     <ClCompile Include="LoggingStreamBuffer.cpp" />
     <ClCompile Include="windows\WindowsLogger.cpp" />
     <ClCompile Include="LoggerAbstractFactory.cpp" />
-    <ClCompile Include="windows\ConsoleStreamBuffer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="windows\Pipe.cpp" />
     <ClCompile Include="windows\Process.cpp" />
@@ -128,13 +125,10 @@
   <ItemGroup>
     <ClInclude Include="IInterProcess.h" />
     <ClInclude Include="IPrintable.h" />
-    <ClInclude Include="linux\LinuxLogger.h" />
-    <ClInclude Include="linux\MessageQueue.h" />
     <ClInclude Include="LoggingStreamBuffer.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="windows\WindowsLogger.h" />
     <ClInclude Include="LoggerAbstractFactory.h" />
-    <ClInclude Include="windows\ConsoleStreamBuffer.h" />
     <ClInclude Include="ILogger.h" />
     <ClInclude Include="windows\Pipe.h" />
     <ClInclude Include="Platforms.h" />
