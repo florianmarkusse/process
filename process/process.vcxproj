@@ -115,6 +115,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="linux\LinuxLogger.cpp" />
+    <ClCompile Include="linux\MessageQueue.cpp" />
     <ClCompile Include="LoggingStreamBuffer.cpp" />
     <ClCompile Include="windows\WindowsLogger.cpp" />
     <ClCompile Include="LoggerAbstractFactory.cpp" />
@@ -125,6 +127,8 @@
   <ItemGroup>
     <ClInclude Include="IInterProcess.h" />
     <ClInclude Include="IPrintable.h" />
+    <ClInclude Include="linux\LinuxLogger.h" />
+    <ClInclude Include="linux\MessageQueue.h" />
     <ClInclude Include="LoggingStreamBuffer.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="windows\WindowsLogger.h" />
