@@ -3,6 +3,12 @@
 #ifdef WINDOWS_PLATFORM
 	#include "windows/WindowsLogger.h"
 #endif // WINDOWS_PLATFORM
+#ifdef APPLE_PLATFORM
+		return nullptr;
+#endif // APPLE_PLATFORM
+#ifdef LINUX_PLATFORM
+	#include "linux/LinuxLogger.h"
+#endif // LINUX_PLATFORM
 
 namespace logger
 {
@@ -25,7 +31,7 @@ namespace logger
 		return nullptr;
 #endif // APPLE_PLATFORM
 #ifdef LINUX_PLATFORM
-		return nullptr;
+		return std::make_shared<LinuxLogger>(name);
 #endif // LINUX_PLATFORM
 	}
 
