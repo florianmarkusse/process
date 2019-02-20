@@ -21,7 +21,6 @@ namespace logger
 	private:
 		MessageQueue m_output;
 		std::string m_queueName;
-		pid_t m_processIDChild;
 
 		static std::string createUniquePipeName(std::string base);
 

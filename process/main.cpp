@@ -6,7 +6,11 @@ int main() {
 
 	auto log = logger::LoggerAbstractFactory::createLogger("test");
 
-	log->info("sending good vibes\n");
+	log->info("sending good vibes");
+	log->info("sending good vibes");
+	log->info("sending good vibes");
+	log->info("sending good vibes");
+	log->info("sending good vibes");
 
 	// wait for user input so the display stays up
 	std::cout << "Program finished, press any key to exit\n";

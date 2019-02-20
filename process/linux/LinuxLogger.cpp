@@ -3,18 +3,13 @@
 #include "LinuxLogger.h"
 #include "MessageQueue.h"
 #include "../LoggingStreamBuffer.h"
+#include "Time.h"
 
-
-
-
-
-#include <sys/wait.h>
-#include <unistd.h>
 #include <mqueue.h>
-#include <iostream>
 #include <string>
-#include <array>
-#include <string.h>
+#include <iostream>
+
+#define EXIT_CHAR 1
 
 namespace logger
 {
@@ -38,39 +33,27 @@ namespace logger
 		m_output { MessageQueue::create(createUniquePipeName("/" + name), MessageQueueMode::write) }
 	{
 		constexpr static char const * CHILD_PROCESS_LOCATION = "/home/florian/Desktop/processCorss/childprocess/main";
+		constexpr static unsigned int SYSTEM_CALL_LENGTH = 512;
 
-		pid_t processID;
+		char argumentBuffer[SYSTEM_CALL_LENGTH];
 
-		processID = fork();
-
-		if (processID == -1) {
-			perror("Failed to fork process\n");
-			exit(EXIT_FAILURE);
-		}
-		
-		if (processID == 0) {
-			// Child process
-			m_processIDChild = processID;
-
-			char argumentBuffer[512];
-
-			snprintf(argumentBuffer, 
+		snprintf(
+			argumentBuffer, 
 			sizeof(argumentBuffer), 
 			"gnome-terminal -- %s %s",
 			CHILD_PROCESS_LOCATION,
 			m_output.getMessageQueueName().c_str());
 
-			system(argumentBuffer);
-
-			_exit(EXIT_SUCCESS);
-		}
-		
+		system(argumentBuffer);
 
 	}
 
 
 	LinuxLogger::~LinuxLogger()
 	{
+		*( this )
+			<< static_cast<char> (EXIT_CHAR)
+			<< std::flush;
 	}
 
 	/*
@@ -82,9 +65,12 @@ namespace logger
 	*/
 	void LinuxLogger::info(const std::string & message)
 	{
+		std::cout << getCurrentFormattedTime() << std::endl;
 		*( this )
+			<< getCurrentFormattedTime()
+			<< " "
 			<< message
-			<< std::flush;
+			<< std::endl;
 	}
 
 	/*
@@ -96,7 +82,12 @@ namespace logger
 	*/
 	void LinuxLogger::warn(const std::string & message)
 	{
-		
+		std::cout << getCurrentFormattedTime() << std::endl;
+		*( this )
+			<< getCurrentFormattedTime()
+			<< " "
+			<< message
+			<< std::endl;
 	}
 
 	/*
@@ -108,7 +99,12 @@ namespace logger
 	*/
 	void LinuxLogger::error(const std::string & message)
 	{
-		
+		std::cout << getCurrentFormattedTime() << std::endl;
+		*( this )
+			<< getCurrentFormattedTime()
+			<< " "
+			<< message
+			<< std::endl;
 	}
 
 	/*
@@ -120,7 +116,12 @@ namespace logger
 	*/
 	void LinuxLogger::success(const std::string & message)
 	{
-		
+		std::cout << getCurrentFormattedTime() << std::endl;
+		*( this )
+			<< getCurrentFormattedTime()
+			<< " "
+			<< message
+			<< std::endl;
 	}
 
 } // namespace logger

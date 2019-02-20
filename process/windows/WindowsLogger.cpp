@@ -1,6 +1,6 @@
 #include "WindowsLogger.h"
 #include "../LoggingStreamBuffer.h"
-#include "../Time.h"
+#include "Time.h"
 
 /*
 	Class for handling each console window for logging purposes.
