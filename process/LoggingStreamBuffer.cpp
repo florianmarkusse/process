@@ -7,7 +7,6 @@
 */
 namespace logger
 {
-
 	/*
 		<override>
 		Handles overflow to the stream buffer to ensure that there is space at
@@ -82,5 +81,4 @@ namespace logger
 		// Define the put area.
 		setp(begin, end);
 	}
-
 } // namespace logger

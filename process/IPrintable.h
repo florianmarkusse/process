@@ -8,10 +8,9 @@
 */
 namespace logger
 {
-	class IPrintable {
-
+	class IPrintable
+	{
 	public:
 		virtual std::string toString() = 0;
-
 	};
 } // namespace logger

@@ -10,10 +10,8 @@
 
 	Florian Markusse
 */
-
 namespace logger
 {
-
 	enum class MessageQueueState
 	{
 		client,
@@ -38,18 +36,17 @@ namespace logger
 		error,
 		// Green color font.
 		success
-    };
+	};
 
 	class MessageQueue : public IInterProcess
 	{
-
 	private:
 		mqd_t m_messageQueueDescriptor;
 		std::string m_messageQueueName;
-	    MessageQueueState m_messageQueueState;
-        MessageQueueMode m_openMode;
+		MessageQueueState m_messageQueueState;
+		MessageQueueMode m_openMode;
 
-        static struct mq_attr m_messageQueueAttributes;
+		static struct mq_attr m_messageQueueAttributes;
 
 		MessageQueue(mqd_t messageQueueDescriptor, std::string messageQueueName, MessageQueueState messageQueueState, MessageQueueMode openMode);
 
@@ -70,12 +67,11 @@ namespace logger
 			MessageQueueMode openMode);
 
 		static MessageQueue open(const std::string &messageQueueName, MessageQueueMode openMode);
-
 		void close();
+
 		const std::string &getMessageQueueName() const;
 
 		size_t read(Buffer buffer) override;
 		void write(Buffer buffer) override;
 	};
-
 } // namespace logger

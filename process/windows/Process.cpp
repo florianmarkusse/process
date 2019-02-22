@@ -9,25 +9,24 @@
 */
 namespace logger
 {
-
 	/*
 		<Constructor>
 		Creates a Process instance and the child process.
 
-		@param executablePath; The path to the executable for the child process 
+		@param executablePath; The path to the executable for the child process
 		to run.
-		@param commandLineArguments; The command line arguments to be supplied 
+		@param commandLineArguments; The command line arguments to be supplied
 		to the child process.
 		@param processCreationFlags; With which flags the child process is to be
 		created.
 	*/
 	logger::Process::Process(
-		const std::string & executablePath, 
-		const std::string & commandLineArguments, 
+		const std::string & executablePath,
+		const std::string & commandLineArguments,
 		ProcessCreationFlags processCreationFlags)
 	{
 		// Set m_cmdLine.
-		std::copy(std::begin(commandLineArguments), 
+		std::copy(std::begin(commandLineArguments),
 			std::end(commandLineArguments),
 			std::back_inserter(m_cmdLine));
 		m_cmdLine.push_back('\0');
@@ -35,20 +34,19 @@ namespace logger
 		STARTUPINFO startupInfo;
 		GetStartupInfoA(&startupInfo);
 
-		if (!static_cast<bool>(CreateProcessA(
+		if (!static_cast<bool>( CreateProcessA(
 			executablePath.c_str(),
 			m_cmdLine.data(),
 			nullptr,
 			nullptr,
 			FALSE,
-			static_cast<DWORD>(processCreationFlags),
+			static_cast<DWORD>( processCreationFlags ),
 			nullptr,
 			nullptr,
 			&startupInfo,
-			&m_processInfo))) { 
-				printf("CreateProcessA failed (%d).\n", GetLastError());
+			&m_processInfo) )) {
+			printf("CreateProcessA failed (%d).\n", GetLastError());
 		}
-
 	}
 
 	/*
@@ -58,9 +56,9 @@ namespace logger
 
 		@param other; The other Process instance.
 	*/
-	logger::Process::Process(Process && other) noexcept 
-			: m_cmdLine { std::move(other.m_cmdLine) },
-			m_processInfo { other.m_processInfo }
+	logger::Process::Process(Process && other) noexcept
+		: m_cmdLine { std::move(other.m_cmdLine) },
+		m_processInfo { other.m_processInfo }
 	{
 		// Other process is no longer valid.
 		other.m_processInfo.hThread = INVALID_HANDLE_VALUE;
@@ -69,8 +67,8 @@ namespace logger
 
 	/*
 		<Move assignment operator>
-		Terminates the current process, moves the member variables of the 
-		"other" instance to this instance and sets the "other" instance to an 
+		Terminates the current process, moves the member variables of the
+		"other" instance to this instance and sets the "other" instance to an
 		invalid process. Afterwards, returns the current instance.
 
 		@param other; The other Process instance.
@@ -81,7 +79,7 @@ namespace logger
 	{
 		// Current process is no longer valid.
 		terminate();
-	
+
 		// Move "other" member variables to this process.
 		m_cmdLine = std::move(other.m_cmdLine);
 		m_processInfo = other.m_processInfo;

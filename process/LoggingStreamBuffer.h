@@ -7,10 +7,8 @@
 
 namespace logger
 {
-
 	class LoggingStreamBuffer : public std::basic_streambuf<char>
 	{
-
 	private:
 		IInterProcess &m_output;
 		std::vector<char> m_buffer;
@@ -24,6 +22,4 @@ namespace logger
 	public:
 		explicit LoggingStreamBuffer(IInterProcess &output, BufferSize bufferSize);
 	};
-
 } // namespace logger
-

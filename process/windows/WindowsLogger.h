@@ -4,14 +4,13 @@
 #include "../ILogger.h"
 
 /*
-	Class for handling each console window on the windows operating system for 
+	Class for handling each console window on the windows operating system for
 	logging purposes.
 
 	Florian Markusse
 */
 namespace logger
 {
-
 	class WindowsLogger : public ILogger, public std::ostream
 	{
 	private:
@@ -31,6 +30,4 @@ namespace logger
 		void error(const std::string &message) override;
 		void success(const std::string &message) override;
 	};
-
 } // namespace logger
-

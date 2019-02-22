@@ -11,8 +11,8 @@ namespace logger
 {
 	constexpr static unsigned int DEFAULT_BUFFER_SIZE = 4096;
 	// Executable location for the child process.
-	const std::string EXECUTABLE_NAME = 
-		R"(C:\dev\Project1\x64\Debug\Project1.exe)"; 
+	const std::string EXECUTABLE_NAME =
+		R"(C:\dev\Project1\x64\Debug\Project1.exe)";
 
 	/*
 		<Constructor>
@@ -48,7 +48,7 @@ namespace logger
 		@return The created Console instance.
 	*/
 	WindowsLogger::WindowsLogger(std::string name)
-		: basic_ostream { new LoggingStreamBuffer { 
+		: basic_ostream { new LoggingStreamBuffer {
 		m_output, BufferSize { DEFAULT_BUFFER_SIZE } } },
 		m_output {
 			Pipe::create(
@@ -56,17 +56,17 @@ namespace logger
 				PipeMode::write,
 				ReadBufferSize { 0 },
 				WriteBufferSize { DEFAULT_BUFFER_SIZE })
-		},
-		m_helper { 
-		EXECUTABLE_NAME, 
-		buildCommandLine(name, m_output.getPipeName()), 
+	},
+		m_helper {
+		EXECUTABLE_NAME,
+		buildCommandLine(name, m_output.getPipeName()),
 		ProcessCreationFlags::newConsole }
 	{
 	}
 
 	/*
 		<override>
-		Logs a message as an informationial message to the console this logger 
+		Logs a message as an informationial message to the console this logger
 		is associated with.
 
 		@param message; The message to log to the logger.
@@ -78,7 +78,7 @@ namespace logger
 			( LogLevel::info )
 			<< getCurrentFormattedTime()
 			<< " "
-			<< message 
+			<< message
 			<< std::flush;
 	}
 
@@ -135,5 +135,4 @@ namespace logger
 			<< message
 			<< std::flush;
 	}
-
 } // namespace logger

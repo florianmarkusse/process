@@ -49,11 +49,9 @@ namespace logger
 
 	class IInterProcess
 	{
-
 	public:
-		
+
 		virtual size_t read(Buffer buffer) = 0;
 		virtual void write(Buffer buffer) = 0;
 	};
-
 }

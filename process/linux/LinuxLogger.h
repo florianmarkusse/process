@@ -14,10 +14,8 @@
 */
 namespace logger
 {
-
 	class LinuxLogger : public ILogger, public std::ostream
 	{
-
 	private:
 		MessageQueue m_output;
 		std::string m_queueName;
@@ -32,9 +30,7 @@ namespace logger
 		void warn(const std::string &message) override;
 		void error(const std::string &message) override;
 		void success(const std::string &message) override;
-
 	};
-
 } // namespace logger
 
 #endif // LINUX_PLATFORM

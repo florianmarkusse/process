@@ -2,13 +2,13 @@
 #include <string>
 #include <Windows.h>
 #include <vector>
-                                                                                
+
 /*
 	Class for managing the creation of processes for logging purposes.
 
 	Florian Markusse
 */
-namespace logger 
+namespace logger
 {
 	// Flag for creating a process with an extra console or not.
 	enum class ProcessCreationFlags : DWORD
@@ -19,16 +19,15 @@ namespace logger
 
 	class Process
 	{
-
 	private:
-		std::vector<char> m_cmdLine;			
+		std::vector<char> m_cmdLine;
 		PROCESS_INFORMATION m_processInfo {};
 
 	public:
 		Process(
 			const std::string &executablePath,
 			const std::string &commandLineArguments,
-			ProcessCreationFlags processCreationFlags = 
+			ProcessCreationFlags processCreationFlags =
 			ProcessCreationFlags::newConsole);
 
 		Process(const Process &) = delete;

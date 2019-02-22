@@ -77,5 +77,8 @@
     <ClInclude Include="linux\MessageQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="linux\Time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

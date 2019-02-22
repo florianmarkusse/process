@@ -11,7 +11,6 @@
 */
 namespace logger
 {
-
 	enum class PipeState
 	{
 		client,
@@ -29,7 +28,7 @@ namespace logger
 	enum class LogLevel : char
 	{
 		// White color font.
-		info = FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_RED,
+		info = FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED,
 		// Yellow/amber color font.
 		warn = FOREGROUND_GREEN | FOREGROUND_RED,
 		// Red color font.
@@ -40,7 +39,6 @@ namespace logger
 
 	class Pipe : public IInterProcess
 	{
-
 	private:
 		HANDLE m_handle;
 		std::string m_pipeName;
@@ -69,13 +67,11 @@ namespace logger
 			WriteBufferSize writeBufferSize);
 
 		static Pipe open(const std::string &pipeName, PipeMode pipeMode);
-
 		void close();
+
 		const std::string &getPipeName() const;
+
 		size_t read(Buffer buffer) override;
 		void write(Buffer buffer) override;
 	};
-
 } // namespace logger
-
-
