@@ -12,6 +12,8 @@ int main() {
 	log->info("sending good vibes");
 	log->info("sending good vibes");
 
+
+
 	// wait for user input so the display stays up
 	std::cout << "Program finished, press any key to exit\n";
 	std::cin.get();
