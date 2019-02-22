@@ -21,7 +21,7 @@ namespace logger
 
 		@return The created Pipe instance
 	*/
-	Pipe::Pipe(HANDLE handle, std::string pipeName, PipeState pipeState)
+	Pipe::Pipe(HANDLE handle, const std::string & pipeName, PipeState pipeState)
 		: m_handle { handle },
 		m_pipeName { std::move(pipeName) },
 		m_pipeState { pipeState } { }

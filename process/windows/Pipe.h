@@ -44,7 +44,7 @@ namespace logger
 		std::string m_pipeName;
 		PipeState m_pipeState;
 
-		Pipe(HANDLE handle, std::string pipeName, PipeState pipeState);
+		Pipe(HANDLE handle, const std::string & pipeName, PipeState pipeState);
 
 		static DWORD getPipeMode(PipeMode pipeMode);
 

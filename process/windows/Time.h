@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <ctime>
-#include <errno.h>
+#include <cerrno>
 
 
 #define BUFFER_SIZE 28

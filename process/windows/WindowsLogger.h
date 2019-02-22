@@ -17,13 +17,13 @@ namespace logger
 		Pipe m_output;
 		Process m_helper;
 
-		static std::string createUniquePipeName(std::string base);
+		static std::string createUniquePipeName(const std::string & base);
 		static std::string buildCommandLine(
-			std::string title,
-			std::string pipeName);
+			const std::string & title,
+			const std::string & pipeName);
 
 	public:
-		explicit WindowsLogger(std::string name);
+		explicit WindowsLogger(const std::string & name);
 
 		void info(const std::string &message) override;
 		void warn(const std::string &message) override;

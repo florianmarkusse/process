@@ -22,7 +22,7 @@ namespace logger
 
 		@return The generated unique pipe name.
 	*/
-	std::string WindowsLogger::createUniquePipeName(std::string base)
+	std::string WindowsLogger::createUniquePipeName(const std::string & base)
 	{
 		return base + std::to_string(::rand());
 	}
@@ -36,7 +36,7 @@ namespace logger
 
 		@return The command line arguments for the child process.
 	*/
-	std::string WindowsLogger::buildCommandLine(std::string title, std::string pipeName)
+	std::string WindowsLogger::buildCommandLine(const std::string & title, const std::string & pipeName)
 	{
 		return EXECUTABLE_NAME + " \"" + title + "\" \"" + pipeName + "\"";
 	}
@@ -47,7 +47,7 @@ namespace logger
 
 		@return The created Console instance.
 	*/
-	WindowsLogger::WindowsLogger(std::string name)
+	WindowsLogger::WindowsLogger(const std::string & name)
 		: basic_ostream { new LoggingStreamBuffer {
 		m_output, BufferSize { DEFAULT_BUFFER_SIZE } } },
 		m_output {

@@ -1,5 +1,5 @@
 #pragma once
-#include "stddef.h"
+#include <cstddef>
 
 /*
 	Interface that every platform (Windows, Linux and Apple) has to inherit
@@ -54,4 +54,4 @@ namespace logger
 		virtual size_t read(Buffer buffer) = 0;
 		virtual void write(Buffer buffer) = 0;
 	};
-}
+} // namespace logger

@@ -48,7 +48,7 @@ namespace logger
 
 		static struct mq_attr m_messageQueueAttributes;
 
-		MessageQueue(mqd_t messageQueueDescriptor, std::string messageQueueName, MessageQueueState messageQueueState, MessageQueueMode openMode);
+		MessageQueue(mqd_t messageQueueDescriptor, const std::string & messageQueueName, MessageQueueState messageQueueState, MessageQueueMode openMode);
 
 		void connect();
 		void disconnect();

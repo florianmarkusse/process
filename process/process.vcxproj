@@ -132,6 +132,7 @@
     <ClInclude Include="linux\Time.h" />
     <ClInclude Include="LoggingStreamBuffer.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="windows\Time.h" />
     <ClInclude Include="windows\WindowsLogger.h" />
     <ClInclude Include="LoggerAbstractFactory.h" />
     <ClInclude Include="ILogger.h" />

@@ -32,7 +32,7 @@ namespace logger
 
 		@return The created Pipe instance
 	*/
-	MessageQueue::MessageQueue(mqd_t messageQueueDescriptor, std::string messageQueueName, MessageQueueState messageQueueState, MessageQueueMode openMode)
+	MessageQueue::MessageQueue(mqd_t messageQueueDescriptor, const std::string & messageQueueName, MessageQueueState messageQueueState, MessageQueueMode openMode)
 		: m_messageQueueDescriptor(messageQueueDescriptor), m_messageQueueName(messageQueueName), m_messageQueueState(messageQueueState), m_openMode(openMode)
 	{
 	}
