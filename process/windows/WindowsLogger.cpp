@@ -86,7 +86,7 @@ namespace logger
 			<< getCurrentFormattedTime()
 			<< " "
 			<< message
-			<< std::flush;
+			<< std::endl;
 	}
 
 	/*
@@ -104,7 +104,7 @@ namespace logger
 			<< getCurrentFormattedTime()
 			<< " "
 			<< message
-			<< std::flush;
+			<< std::endl;
 	}
 
 	/*
@@ -122,7 +122,7 @@ namespace logger
 			<< getCurrentFormattedTime()
 			<< " "
 			<< message
-			<< std::flush;
+			<< std::endl;
 	}
 
 	/*
@@ -140,6 +140,6 @@ namespace logger
 			<< getCurrentFormattedTime()
 			<< " "
 			<< message
-			<< std::flush;
+			<< std::endl;
 	}
 } // namespace logger

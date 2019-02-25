@@ -1,4 +1,7 @@
 #pragma once
+#include "../Platforms.h"
+#ifdef LINUX_PLATFORM
+
 #include "../IInterProcess.h"
 
 #include <fcntl.h>           /* For O_* constants */
@@ -79,3 +82,5 @@ namespace logger
 		void write(Buffer buffer) override;
 	};
 } // namespace logger
+
+#endif // LINUX_PLATFORM

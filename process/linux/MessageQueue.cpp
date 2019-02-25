@@ -1,3 +1,7 @@
+#pragma once
+#include "../Platforms.h"
+#ifdef LINUX_PLATFORM
+
 #include "MessageQueue.h"
 
 /*
@@ -273,3 +277,5 @@ namespace logger
 		}
 	}
 } // namespace logger
+
+#endif // LINUX_PLATFORM

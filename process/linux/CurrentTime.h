@@ -1,3 +1,7 @@
+#pragma once
+#include "../Platforms.h"
+#ifdef LINUX_PLATFORM
+
 #include <time.h>
 #include <string>
 
@@ -26,3 +30,5 @@ std::string getCurrentFormattedTime()
 		+ std::to_string(tm.tm_sec)
 		+ "]";
 }
+
+#endif // LINUX_PLATFORM

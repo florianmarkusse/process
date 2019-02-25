@@ -1,6 +1,7 @@
+#pragma once
 #include "../Platforms.h"
 #ifdef LINUX_PLATFORM
-#pragma once
+
 #include "../ILogger.h"
 #include "MessageQueue.h"
 
