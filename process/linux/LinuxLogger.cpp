@@ -3,7 +3,7 @@
 #include "LinuxLogger.h"
 #include "MessageQueue.h"
 #include "../LoggingStreamBuffer.h"
-#include "Time.h"
+#include "CurrentTime.h"
 
 #include <mqueue.h>
 #include <string>
@@ -27,17 +27,27 @@ namespace logger
 
 		@return The generated unique pipe name.
 	*/
-	std::string LinuxLogger::createUniquePipeName(std::string base)
+	std::string LinuxLogger::createUniquePipeName(const std::string & base)
 	{
 		return base + std::to_string(::rand());
 	}
 
 	LinuxLogger::LinuxLogger(const std::string & name)
-		: basic_ostream { new LoggingStreamBuffer {
-		m_output, BufferSize { 4096 } } },
-		m_output { MessageQueue::create(createUniquePipeName("/" + name), MessageQueueMode::write) }
+		: basic_ostream {
+			new LoggingStreamBuffer {
+				m_output,
+				BufferSize {
+					4096
+				}
+			}
+	},
+		m_output {
+			MessageQueue::create(createUniquePipeName("/" + name),
+			MessageQueueMode::write)
+	}
 	{
-		constexpr static char const * CHILD_PROCESS_LOCATION = "/home/florian/Desktop/processCorss/childprocess/main";
+		constexpr static char const * CHILD_PROCESS_LOCATION =
+			"/home/florian/Desktop/processCorss/childprocess/main";
 		constexpr static unsigned int SYSTEM_CALL_LENGTH = 512;
 
 		char argumentBuffer[SYSTEM_CALL_LENGTH];

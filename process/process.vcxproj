@@ -129,10 +129,9 @@
     <ClInclude Include="IPrintable.h" />
     <ClInclude Include="linux\LinuxLogger.h" />
     <ClInclude Include="linux\MessageQueue.h" />
-    <ClInclude Include="linux\Time.h" />
+    <ClInclude Include="linux\CurrentTime.h" />
     <ClInclude Include="LoggingStreamBuffer.h" />
-    <ClInclude Include="Time.h" />
-    <ClInclude Include="windows\Time.h" />
+    <ClInclude Include="windows\CurrentTime.h" />
     <ClInclude Include="windows\WindowsLogger.h" />
     <ClInclude Include="LoggerAbstractFactory.h" />
     <ClInclude Include="ILogger.h" />

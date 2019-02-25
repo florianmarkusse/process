@@ -1,6 +1,6 @@
 #include "WindowsLogger.h"
 #include "../LoggingStreamBuffer.h"
-#include "Time.h"
+#include "CurrentTime.h"
 
 /*
 	Class for handling each console window for logging purposes.
@@ -48,8 +48,14 @@ namespace logger
 		@return The created Console instance.
 	*/
 	WindowsLogger::WindowsLogger(const std::string & name)
-		: basic_ostream { new LoggingStreamBuffer {
-		m_output, BufferSize { DEFAULT_BUFFER_SIZE } } },
+		: basic_ostream {
+			new LoggingStreamBuffer {
+				m_output,
+				BufferSize {
+					DEFAULT_BUFFER_SIZE
+				}
+			}
+	},
 		m_output {
 			Pipe::create(
 				createUniquePipeName(name),
@@ -58,9 +64,10 @@ namespace logger
 				WriteBufferSize { DEFAULT_BUFFER_SIZE })
 	},
 		m_helper {
-		EXECUTABLE_NAME,
-		buildCommandLine(name, m_output.getPipeName()),
-		ProcessCreationFlags::newConsole }
+			EXECUTABLE_NAME,
+			buildCommandLine(name, m_output.getPipeName()),
+			ProcessCreationFlags::newConsole
+	}
 	{
 	}
 

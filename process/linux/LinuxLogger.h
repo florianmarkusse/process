@@ -20,7 +20,7 @@ namespace logger
 		MessageQueue m_output;
 		std::string m_queueName;
 
-		static std::string createUniquePipeName(std::string base);
+		static std::string createUniquePipeName(const std::string & base);
 
 	public:
 		explicit LinuxLogger(const std::string & name);

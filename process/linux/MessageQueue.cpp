@@ -25,15 +25,23 @@ namespace logger
 		<Constructor>
 		Creates a MessageQueue instance
 
-		@param messageQueueDescriptor; Descriptor used to connect to the message queue.
+		@param messageQueueDescriptor; Descriptor used to connect to the message
+		queue.
 		@param messageQueueName; The name of the message queue.
 		@param messageQueueState; The state of the message queue.
 		@param openMode; How the message queue should be opened.
 
 		@return The created Pipe instance
 	*/
-	MessageQueue::MessageQueue(mqd_t messageQueueDescriptor, const std::string & messageQueueName, MessageQueueState messageQueueState, MessageQueueMode openMode)
-		: m_messageQueueDescriptor(messageQueueDescriptor), m_messageQueueName(messageQueueName), m_messageQueueState(messageQueueState), m_openMode(openMode)
+	MessageQueue::MessageQueue(
+		mqd_t messageQueueDescriptor,
+		const std::string & messageQueueName,
+		MessageQueueState messageQueueState,
+		MessageQueueMode openMode)
+		: m_messageQueueDescriptor(messageQueueDescriptor),
+		m_messageQueueName(messageQueueName),
+		m_messageQueueState(messageQueueState),
+		m_openMode(openMode)
 	{
 	}
 
@@ -47,7 +55,8 @@ namespace logger
 		}
 
 		m_messageQueueDescriptor = mq_open(m_messageQueueName.c_str(),
-			static_cast<std::underlying_type<MessageQueueMode>::type>( m_openMode ),
+			static_cast<std::underlying_type<MessageQueueMode>::type>
+			( m_openMode ),
 			m_openMode);
 
 		if (( m_messageQueueDescriptor ) == -1) {
@@ -92,8 +101,9 @@ namespace logger
 
 	/*
 		<Move assignment operator>
-		Closes the message queue, moves the member variables of the "other" instance to
-		this instance and sets the "other" instance to an invalid message queue.
+		Closes the message queue, moves the member variables of the "other"
+		instance to this instance and sets the "other" instance to an invalid
+		message queue.
 		Afterwards, returns the current instance.
 
 		@param other; The other MessageQueue instance.
@@ -128,7 +138,8 @@ namespace logger
 	/*
 		Creates the message queue and returns a MessageQueue instance.
 
-		@param messageQueueName; The name of the message queue in the file system.
+		@param messageQueueName; The name of the message queue in the file
+		system.
 		@param openMode; Which mode the message queue is to be opened.
 
 		@return the created MessageQueue instance.
@@ -140,7 +151,8 @@ namespace logger
 		mqd_t messageQueueDescriptorServer;
 
 		messageQueueDescriptorServer = mq_open(messageQueueName.c_str(),
-			static_cast<std::underlying_type<MessageQueueMode>::type>( openMode ) | O_CREAT,
+			static_cast<std::underlying_type<MessageQueueMode>::type>
+			( openMode ) | O_CREAT,
 			S_IRWXU,
 			&m_messageQueueAttributes);
 
@@ -149,7 +161,11 @@ namespace logger
 			exit(EXIT_FAILURE);
 		}
 
-		return MessageQueue { messageQueueDescriptorServer, messageQueueName, MessageQueueState::serverConnected, openMode };
+		return MessageQueue {
+			messageQueueDescriptorServer,
+			messageQueueName,
+			MessageQueueState::serverConnected, openMode
+		};
 	}
 
 	/*
@@ -161,12 +177,15 @@ namespace logger
 
 		@return the created MessageQueue instance.
 	*/
-	MessageQueue MessageQueue::open(const std::string &messageQueueName, MessageQueueMode openMode)
+	MessageQueue MessageQueue::open(
+		const std::string &messageQueueName,
+		MessageQueueMode openMode)
 	{
 		mqd_t messageQueueDescriptorClient;
 
 		messageQueueDescriptorClient = mq_open(messageQueueName.c_str(),
-			static_cast<std::underlying_type<MessageQueueMode>::type>( openMode ),
+			static_cast<std::underlying_type<MessageQueueMode>::type>
+			( openMode ),
 			S_IRWXU,
 			&m_messageQueueAttributes);
 
@@ -175,7 +194,11 @@ namespace logger
 			exit(EXIT_FAILURE);
 		}
 
-		return MessageQueue { messageQueueDescriptorClient, messageQueueName, MessageQueueState::client, openMode };
+		return MessageQueue {
+			messageQueueDescriptorClient,
+			messageQueueName,
+			MessageQueueState::client, openMode
+		};
 	}
 
 	/*
@@ -239,7 +262,10 @@ namespace logger
 	{
 		connect();
 
-		int result = mq_send(m_messageQueueDescriptor, buffer.data, buffer.size.value, 0);
+		int result = mq_send(m_messageQueueDescriptor,
+			buffer.data,
+			buffer.size.value,
+			0);
 
 		if (result == -1) {
 			perror("failed to write to queue\n");
