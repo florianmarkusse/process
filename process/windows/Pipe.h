@@ -1,4 +1,7 @@
 #pragma once
+#include "../Platforms.h"
+#ifdef WINDOWS_PLATFORM
+
 #include "../IInterProcess.h"
 
 #include <windows.h>
@@ -75,3 +78,5 @@ namespace logger
 		void write(Buffer buffer) override;
 	};
 } // namespace logger
+
+#endif // WINDOWS_PLATFORM

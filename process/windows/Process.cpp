@@ -1,4 +1,6 @@
 #include "Process.h"
+#ifdef WINDOWS_PLATFORM
+
 #include <iostream>
 
 /*
@@ -36,11 +38,11 @@ namespace logger
 
 		if (!static_cast<bool>( CreateProcessA(
 			executablePath.c_str(),
-			m_cmdLine.data(),
+			static_cast<LPSTR> ( m_cmdLine.data() ),
 			nullptr,
 			nullptr,
 			FALSE,
-			static_cast<DWORD>( processCreationFlags ),
+			static_cast<DWORD> ( processCreationFlags ),
 			nullptr,
 			nullptr,
 			&startupInfo,
@@ -123,3 +125,5 @@ namespace logger
 		}
 	}
 } // namespace logger
+
+#endif // WINDOWS_PLATFORM

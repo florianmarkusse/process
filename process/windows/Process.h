@@ -1,4 +1,7 @@
 #pragma once
+#include "../Platforms.h"
+#ifdef WINDOWS_PLATFORM
+
 #include <string>
 #include <Windows.h>
 #include <vector>
@@ -41,3 +44,5 @@ namespace logger
 		void terminate(int exitCode = 0);
 	};
 } // namespace logger
+
+#endif // WINDOWS_PLATFORM

@@ -1,4 +1,7 @@
 #pragma once
+#include "../Platforms.h"
+#ifdef WINDOWS_PLATFORM
+
 #include "Pipe.h"
 #include "Process.h"
 #include "../ILogger.h"
@@ -31,3 +34,5 @@ namespace logger
 		void success(const std::string &message) override;
 	};
 } // namespace logger
+
+#endif // WINDOWS_PLATFORM

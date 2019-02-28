@@ -1,4 +1,6 @@
 #include "Pipe.h"
+#ifdef WINDOWS_PLATFORM
+
 #include <thread>
 
 /*
@@ -152,12 +154,14 @@ namespace logger
 
 		const HANDLE pipeHandle = CreateNamedPipeA(
 			fullPipeName.c_str(),
-			getPipeMode(pipeMode),
-			PIPE_TYPE_MESSAGE | PIPE_READMODE_BYTE | PIPE_WAIT,
-			1,
-			writeBufferSize.value,
-			readBufferSize.value,
-			1,
+			static_cast<DWORD> ( getPipeMode(pipeMode) ),
+			static_cast<DWORD> ( PIPE_TYPE_MESSAGE
+				| PIPE_READMODE_BYTE
+				| PIPE_WAIT ),
+			static_cast<DWORD> ( 1 ),
+			static_cast<DWORD> ( writeBufferSize.value ),
+			static_cast<DWORD> ( readBufferSize.value ),
+			static_cast<DWORD> ( 1 ),
 			nullptr
 		);
 
@@ -186,11 +190,11 @@ namespace logger
 		for (unsigned short attempts = 0; attempts < 3; ++attempts) {
 			const HANDLE pipeHandle = CreateFileA(
 				fullPipeName.c_str(),
-				getPipeMode(pipeMode),
-				0,
+				static_cast<DWORD> ( getPipeMode(pipeMode) ),
+				static_cast<DWORD> ( 0 ),
 				nullptr,
-				OPEN_EXISTING,
-				0,
+				static_cast<DWORD> ( OPEN_EXISTING ),
+				static_cast<DWORD> ( 0 ),
 				nullptr);
 
 			// Successfully connected to the pipe.
@@ -252,8 +256,8 @@ namespace logger
 		DWORD bytesRead;
 		if (!static_cast<bool>( ReadFile(
 			m_handle,
-			buffer.data,
-			buffer.size.value,
+			static_cast<LPVOID> ( buffer.data ),
+			static_cast<DWORD> ( buffer.size.value ),
 			&bytesRead,
 			nullptr) )) {
 			printf("ReadFile failed, could not read pipe\n");
@@ -277,11 +281,13 @@ namespace logger
 		DWORD bytesWritten;
 		if (!static_cast<bool>( WriteFile(
 			m_handle,
-			buffer.data,
-			buffer.size.value,
+			static_cast<LPVOID> ( buffer.data ),
+			static_cast<DWORD> ( buffer.size.value ),
 			&bytesWritten,
 			nullptr) ) || bytesWritten != buffer.size.value) {
 			printf("WriteFile failed, could not write to pipe\n");
 		}
 	}
 } // namespace logger
+
+#endif // WINDOWS_PLATFORM

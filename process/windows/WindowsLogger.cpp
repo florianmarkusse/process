@@ -1,4 +1,6 @@
 #include "WindowsLogger.h"
+#ifdef WINDOWS_PLATFORM
+
 #include "../LoggingStreamBuffer.h"
 #include "CurrentTime.h"
 
@@ -143,3 +145,5 @@ namespace logger
 			<< std::endl;
 	}
 } // namespace logger
+
+#endif // WINDOWS_PLATFORM

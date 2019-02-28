@@ -1,31 +1,39 @@
 #pragma once
+#include "../Platforms.h"
+#ifdef WINDOWS_PLATFORM
+
 #include <string>
 #include <ctime>
 #include <cerrno>
 
 #define BUFFER_SIZE 28
 
-/*
-	Utility function that returns the current time in format:
-	{ [\Day \Month \Day \Time \Year] }
-
-	@return The current time
-*/
-std::string getCurrentFormattedTime()
+namespace logger
 {
-	char currentTime[BUFFER_SIZE];
-	// Want the format to be [time]
-	currentTime[0] = '[';
+	/*
+		Utility function that returns the current time in format:
+		{ [\Day \Month \Day \Time \Year] }
 
-	std::time_t  time = std::time(nullptr);
-	ctime_s(currentTime + 1, BUFFER_SIZE - 1, &time);
+		@return The current time
+	*/
+	std::string getCurrentFormattedTime()
+	{
+		char currentTime[BUFFER_SIZE];
+		// Want the format to be [time]
+		currentTime[0] = '[';
 
-	for (unsigned int i = 1; i < BUFFER_SIZE; ++i) {
-		if (currentTime[i] == '\n') {
-			// Want the format to be [time]
-			currentTime[i] = ']';
+		std::time_t  time = std::time(nullptr);
+		ctime_s(currentTime + 1, BUFFER_SIZE - 1, &time);
+
+		for (unsigned int i = 1; i < BUFFER_SIZE; ++i) {
+			if (currentTime[i] == '\n') {
+				// Want the format to be [time]
+				currentTime[i] = ']';
+			}
 		}
-	}
 
-	return currentTime;
-}
+		return currentTime;
+	}
+} // namespace logger
+
+#endif // WINDOWS_PLATFORM

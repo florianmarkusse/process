@@ -1,8 +1,6 @@
-#pragma once
-#include "../Platforms.h"
+#include "LinuxLogger.h"
 #ifdef LINUX_PLATFORM
 
-#include "LinuxLogger.h"
 #include "MessageQueue.h"
 #include "../LoggingStreamBuffer.h"
 #include "CurrentTime.h"

@@ -1,8 +1,5 @@
-#pragma once
-#include "../Platforms.h"
-#ifdef LINUX_PLATFORM
-
 #include "MessageQueue.h"
+#ifdef LINUX_PLATFORM
 
 /*
 	Class for managing the creation and usage of pipes for logging purposes.
