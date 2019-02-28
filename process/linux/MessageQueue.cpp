@@ -128,7 +128,7 @@ namespace logger
 	}
 
 	/*
-		<Deconstructor>, <virtual>
+		<Deconstructor>, <Virtual>
 		Closes the message queue.
 	*/
 	MessageQueue::~MessageQueue()
